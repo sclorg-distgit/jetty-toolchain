@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.4
-Release:        9.10%{?dist}
+Release:        9.11%{?dist}
 Summary:        Jetty Toolchain main POM file
 
 License:        ASL 2.0 or EPL
@@ -15,28 +15,28 @@ Source1:        .rpmlint
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-jetty-parent
-BuildRequires:  maven30-maven-release-plugin
+BuildRequires:  %{?scl_prefix}jetty-parent
+BuildRequires:  %{?scl_prefix}maven-release-plugin
 
 %description
 Jetty Toolchain main POM file
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp -p jetty-distribution-remote-resources/src/main/resources/* .
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 pushd %{pkg_name}
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 pushd %{pkg_name}
 %mvn_install
@@ -48,6 +48,9 @@ pushd %{pkg_name}
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-9.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.4-9.10
 - maven33 rebuild
 
