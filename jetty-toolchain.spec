@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.4
-Release:        9.11%{?dist}
+Release:        9.12%{?dist}
 Summary:        Jetty Toolchain main POM file
 
 License:        ASL 2.0 or EPL
@@ -14,7 +14,7 @@ Source0:        http://git.eclipse.org/c/jetty/org.eclipse.jetty.toolchain.git/s
 Source1:        .rpmlint
 BuildArch:      noarch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}jetty-parent
 BuildRequires:  %{?scl_prefix}maven-release-plugin
 
@@ -48,6 +48,9 @@ pushd %{pkg_name}
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.4-9.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.4-9.11
 - maven33 rebuild #2
 
